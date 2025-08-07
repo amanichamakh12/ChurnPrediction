@@ -54,7 +54,7 @@ def send_backend(client: ClientFeatures, prediction: int, proba: float, reason: 
         "probability": round(proba, 2),
 
         "reason": reason,
-        "recommandation":reco
+        "recommandation":recommandation
     }
     response = requests.post(url, json=payload)
     return response.text
