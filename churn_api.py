@@ -11,9 +11,17 @@ import traceback
 import requests
 import pickle
 import os
+from fastapi.middleware.cors import CORSMiddleware
+
 
 app = FastAPI()
-
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  
+    allow_credentials=True,
+    allow_methods=["*"],  
+    allow_headers=["*"],
+)
 
 class ClientFeatures(BaseModel):
     CLI_id: int
@@ -35,7 +43,6 @@ class ClientFeatures(BaseModel):
 
 with open("C:/Users/user/Downloads/ChurnPrediction/model_rf.pkl", "rb") as f:
     model = pickle.load(f)
-
 
 
 def save_client(client: ClientFeatures):
